@@ -1,4 +1,3 @@
-
 from pathlib import Path
  
 import streamlit as st
@@ -22,6 +21,20 @@ SUMMARY = (
     "and wired the results into CI/CD pipelines. I care about software quality, automation, "
     "and AI-assisted testing."
 )
+ 
+ABOUT = [
+    "I'm a test engineer who likes finding problems before drivers do. At Luxoft/MBition in Berlin I test "
+    "Mercedes-Benz infotainment and ADAS software: I design system-level tests, flash ECUs on vehicles and "
+    "test benches, and dig through CAN, Ethernet, and DLT logs to understand why something misbehaves.",
+    "Over 4+ years I have turned repetitive checks into Python automation. I build regression frameworks and "
+    "pipelines with Jenkins, GitLab CI/CD, and Docker that flash software and analyze the results, so teams "
+    "spend less time on manual validation. My background is in electrical engineering, followed by a Master's "
+    "in Automotive Software Engineering at TU Chemnitz, where my thesis was about testing Edge IoT software "
+    "for smart kiosks.",
+    "Right now I am exploring how AI can make testing smarter, with Generative AI, RAG, and agentic workflows "
+    "using Claude (beginner level, and enjoying it). I work in English, speak German at B1, and I'm open to "
+    "Python test automation and automotive validation roles.",
+]
  
 SKILLS = {
     "Programming": ["Python", "Java", "C++"],
@@ -155,7 +168,8 @@ tab_about, tab_exp, tab_proj, tab_skills, tab_edu = st.tabs(
 )
  
 with tab_about:
-    st.write(SUMMARY)
+    for para in ABOUT:
+        st.write(para)
     st.markdown(
         "<div class='stats'>"
         "<div><div class='label'>Years in test automation</div><div class='value'>4+</div></div>"
