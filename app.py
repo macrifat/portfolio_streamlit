@@ -161,7 +161,7 @@ c2.link_button("GitHub", GITHUB)
 c3.link_button("Email me", f"mailto:{EMAIL}")
 cv = Path(__file__).parent / "CV_Monsur_Chowdhury.pdf"
 if cv.exists():
-    c4.download_button("Download CV (PDF)", cv.read_bytes(), file_name=cv.name, mime="application/pdf")
+    c4.download_button("Download CV (PDF)", cv.read_bytes(), file_name="CV_Monsur_Chowdhury.pdf", mime="application/pdf", type="primary")
  
 tab_about, tab_exp, tab_proj, tab_skills, tab_edu = st.tabs(
     ["About", "Experience", "Projects", "Skills", "Education"]
