@@ -1,27 +1,46 @@
+
+/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+App · PY
 from pathlib import Path
-
+ 
 import streamlit as st
-
+ 
 st.set_page_config(
     page_title="Monsur Ahmed Chowdhury | Test Automation Engineer",
     page_icon="🧪",
-    layout="wide",
+    layout="centered",
 )
-
+ 
 NAME = "Monsur Ahmed Chowdhury"
 TITLE = "Automotive Software Test Engineer"
 LOCATION = "Berlin, Germany"
 EMAIL = "chowdhury93.tuc@gmail.com"
 LINKEDIN = "https://www.linkedin.com/in/monsur-ahmed-chowdhury-50948319b/"
 GITHUB = "https://github.com/macrifat?tab=repositories"
-
+ 
 SUMMARY = (
     "I test automotive infotainment and ADAS software for Mercedes-Benz at Luxoft/MBition. "
     "Over 4+ years I have built Python test automation, flashed ECUs on vehicles and test benches, "
     "and wired the results into CI/CD pipelines. I care about software quality, automation, "
     "and AI-assisted testing."
 )
-
+ 
 SKILLS = {
     "Programming": ["Python", "Java", "C++"],
     "Test automation": ["PyTest", "Robot Framework", "Selenium", "Postman", "REST API testing"],
@@ -33,7 +52,7 @@ SKILLS = {
     "IoT": ["Raspberry Pi", "MQTT"],
     "Languages": ["English (advanced)", "German (B1)"],
 }
-
+ 
 EXPERIENCE = [
     {
         "role": "Test Engineer",
@@ -78,7 +97,7 @@ EXPERIENCE = [
         "tech": "Python, MQTT, unit testing",
     },
 ]
-
+ 
 PROJECTS = [
     ("Regression automation framework",
      "Python-based framework for regression testing of Mercedes-Benz infotainment and ADAS platforms.",
@@ -96,7 +115,7 @@ PROJECTS = [
      "Learning project: retrieval-augmented generation and agentic workflows with Claude (beginner level).",
      "LLMs, RAG, Claude"),
 ]
-
+ 
 EDUCATION = [
     ("Master's in Automotive Software Engineering",
      "Technical University of Chemnitz, Germany", "2019 to 2023",
@@ -104,13 +123,13 @@ EDUCATION = [
     ("Bachelor's in Electrical and Electronic Engineering",
      "American International University Bangladesh, Dhaka", "2011 to 2015", ""),
 ]
-
+ 
 CERTS = [
     "Robot Framework & Selenium with Python",
     "Agile & Scrum Project Management",
     "Generative AI / RAG",
 ]
-
+ 
 st.markdown(
     """
     <style>
@@ -120,39 +139,50 @@ st.markdown(
     .chip { display:inline-block; padding:2px 10px; margin:0 6px 6px 0; border:1px solid #0E6E8C;
             border-radius:4px; font-size:0.85rem; color:#0E6E8C; }
     .meta { color:#5b6770; font-size:0.9rem; }
+    .block-container { max-width: 56rem; padding-top: 2rem; }
+    button[title="View fullscreen"] { display:none; }
+    [data-testid="stImage"] img { max-width: 14rem !important; }
+    .stats { display:flex; flex-wrap:wrap; gap:1.5rem 3rem; margin-top:1rem; }
+    .stats div { min-width:9rem; }
+    .stats .label { font-size:0.85rem; color:#5b6770; }
+    .stats .value { font-size:1.25rem; font-weight:500; line-height:1.3; white-space:nowrap; }
     </style>
     """,
     unsafe_allow_html=True,
 )
-
+ 
 photo = Path(__file__).parent / "photo.jpg"
-head_photo, head_text = st.columns([1, 3], vertical_alignment="center")
+head_photo, head_text = st.columns([1, 2.4], vertical_alignment="center", gap="large")
 with head_text:
     st.title(NAME)
     st.subheader(TITLE)
     st.markdown(f"<span class='meta'>{LOCATION}</span>", unsafe_allow_html=True)
 if photo.exists():
-    head_photo.image(str(photo), use_container_width=True)
-
-c1, c2, c3, c4 = st.columns([1, 1, 1, 2])
+    head_photo.image(str(photo), width=220)
+ 
+c1, c2, c3, c4 = st.columns([1.05, 0.9, 1.05, 5], gap="small")
 c1.link_button("LinkedIn", LINKEDIN)
 c2.link_button("GitHub", GITHUB)
 c3.link_button("Email me", f"mailto:{EMAIL}")
 cv = Path(__file__).parent / "CV_Monsur_Chowdhury.pdf"
 if cv.exists():
     c4.download_button("Download CV (PDF)", cv.read_bytes(), file_name=cv.name, mime="application/pdf")
-
+ 
 tab_about, tab_exp, tab_proj, tab_skills, tab_edu = st.tabs(
     ["About", "Experience", "Projects", "Skills", "Education"]
 )
-
+ 
 with tab_about:
     st.write(SUMMARY)
-    m1, m2, m3 = st.columns(3)
-    m1.metric("Years in test automation", "4+")
-    m2.metric("Current client", "Mercedes-Benz")
-    m3.metric("Languages", "EN advanced, DE B1")
-
+    st.markdown(
+        "<div class='stats'>"
+        "<div><div class='label'>Years in test automation</div><div class='value'>4+</div></div>"
+        "<div><div class='label'>Current client</div><div class='value'>Mercedes-Benz</div></div>"
+        "<div><div class='label'>Languages</div><div class='value'>EN (advanced), DE (B1)</div></div>"
+        "</div>",
+        unsafe_allow_html=True,
+    )
+ 
 with tab_exp:
     for job in EXPERIENCE:
         with st.container(border=True):
@@ -162,7 +192,7 @@ with tab_exp:
             for p in job["points"]:
                 st.markdown(f"- {p}")
             st.caption(f"Technologies: {job['tech']}")
-
+ 
 with tab_proj:
     cols = st.columns(2)
     for i, (title, desc, tech) in enumerate(PROJECTS):
@@ -171,7 +201,7 @@ with tab_proj:
             st.write(desc)
             st.caption(tech)
     st.markdown(f"More code on [GitHub]({GITHUB}).")
-
+ 
 with tab_skills:
     for group, items in SKILLS.items():
         st.markdown(f"**{group}**")
@@ -179,7 +209,7 @@ with tab_skills:
     st.markdown("**Certifications and courses**")
     for c in CERTS:
         st.markdown(f"- {c}")
-
+ 
 with tab_edu:
     for degree, school, years, extra in EDUCATION:
         with st.container(border=True):
@@ -188,3 +218,4 @@ with tab_edu:
             if extra:
                 st.write(extra)
     st.markdown(f"Contact: [{EMAIL}](mailto:{EMAIL})")
+ 
